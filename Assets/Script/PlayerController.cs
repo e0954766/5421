@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     public GameObject winUI;
     public GameObject loseUI;
     public GameObject hintUI;
+    public GameObject collectUI;
 
     public ArrayList R = new ArrayList();
     public ArrayList CK = new ArrayList();
@@ -243,33 +244,18 @@ public class PlayerController : MonoBehaviour
             if (al[0].ToString() != "None" && canOpen && !treasure.isOpened)
             {
                 updateATT(al);
-                /*
-                treasureWindow.SetActive(true);
-                if (al.Count >= 2)
-                {
-                    CKChoice_2.SetActive(true);
-                }
-                if (al.Count >= 3)
-                {
-                    CKChoice_3.SetActive(true);
-                }
-                if (al.Count == 4)
-                {
-                    CKChoice_4.SetActive(true);
-                }
-                GameObject[] CKChoices = GameObject.FindGameObjectsWithTag("CKChoice");
-                for (int i = 0; i < CKChoices.Length; i++) 
-                {
-                    TextMeshProUGUI text = CKChoices[i].GetComponent<TextMeshProUGUI>();
-
-                    text.text = al[i].ToString();
-                }
-                */
+                collectUI.SetActive(true);
+                TextMeshProUGUI ctext = collectUI.GetComponentsInChildren<TextMeshProUGUI>()[0];
+                ctext.text = "You have collected attributes:" + string.Join(",", (string[])al.ToArray(typeof(string)));
+                Invoke("shutC", 2.0f); 
             }
         }
         
 
 
+    }
+    void shutC(){
+        collectUI.SetActive(false);
     }
     // Update is called once per frame
     void FixedUpdate()
