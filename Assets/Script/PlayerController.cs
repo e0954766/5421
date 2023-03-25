@@ -1,6 +1,9 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using ConsoleApp1;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -197,7 +200,7 @@ public class PlayerController : MonoBehaviour
         col= this.GetComponent<BoxCollider2D>();
         anim= this.GetComponent<Animator>(); 
     }
-    void InitAttr()
+    void InitAttr(string difficulty = "easy")
     {
         /*
         R = new string[]{"A","B","C","D","E"};
@@ -205,20 +208,35 @@ public class PlayerController : MonoBehaviour
         FD = new string[]{"A","B","B","C","C","D,E"};
         CK = new string[]{"A"};
         ATT = new string[]{"A"};*/
-        R.Add("A");
-        R.Add("B");
-        R.Add("C");
-        R.Add("D");
-        R.Add("E");
-        FD.Add("A");
-        FD.Add("B");
-        FD.Add("B");
-        FD.Add("C");
-        FD.Add("C");
-        FD.Add("D,E");
-        CK.Add("A");
-        ATT.Add("A");
-        RCK.Add("A");
+        GameConfig config = new GameConfig(difficulty);
+        Generator generator = new Generator(config);
+        JObject data = generator.Generate();
+        
+        var rArray = (JArray)data["R"];
+        foreach (var attr in rArray)
+        {
+            R.Add(attr.ToString());
+        }
+
+        var fdArray = (JArray)data["FD"];
+        foreach (var fd in fdArray)
+        {
+            var lhsArray = (JArray)fd[0];
+            var lhs = string.Join("", lhsArray.Select(x => x.ToString()));
+            var rhsArray = (JArray)fd[1];
+            var rhs = string.Join("", rhsArray.Select(x => x.ToString()));
+            FD.Add(lhs);
+            FD.Add(rhs);
+        }
+        
+        var ckArray = (JArray)data["CK"];
+        foreach (var ck in ckArray)
+        {
+            var keyArray = (JArray)ck;
+            var key = string.Join("", keyArray.Select(x => x.ToString()));
+            RCK.Add(key);
+        }
+
         atts.text = string.Join(", ", (string[])ATT.ToArray(typeof(string)));
         cks.text = string.Join(", ", (string[])CK.ToArray(typeof(string)));
         string strf = "";
