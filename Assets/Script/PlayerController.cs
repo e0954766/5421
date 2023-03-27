@@ -201,7 +201,7 @@ public class PlayerController : MonoBehaviour
         col= this.GetComponent<BoxCollider2D>();
         anim= this.GetComponent<Animator>(); 
     }
-    void InitAttr(string difficulty = "easy")
+    void InitAttr(string difficulty = "middle")
     {
         /*
         R = new string[]{"A","B","C","D","E"};

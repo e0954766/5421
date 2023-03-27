@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using UnityEngine;
 
 namespace ConsoleApp1
 {
@@ -24,7 +25,7 @@ namespace ConsoleApp1
 
         private JObject LoadConfig()
         {
-            string exeDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            string exeDir = Application.dataPath;
             string filePath = System.IO.Path.Combine(exeDir,  "game_config.json");
             string fileContent = System.IO.File.ReadAllText(filePath);
 
