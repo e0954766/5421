@@ -9,6 +9,7 @@ public class Button : MonoBehaviour
     public GameObject treasureWindow; // 弹窗对象
     public TextMeshProUGUI atts;
     public TextMeshProUGUI cks;
+    public TextMeshProUGUI rs;
     public TextMeshProUGUI finishSelect;
 
     public ArrayList CK = new ArrayList();
@@ -30,7 +31,7 @@ public class Button : MonoBehaviour
 
     void Update()
     {
-
+        print(R.Count);
     }
     public void Finished()
     {
@@ -62,8 +63,10 @@ public class Button : MonoBehaviour
             }
         }
         CK.Sort();
-        //print(CK[0]);
+        CK.Remove(" ");
+        CK.Remove(""); 
         cks.text = string.Join(", ", (string[])CK.ToArray(typeof(string)));
+        //cks.text = string.Join(", ", (string[])CK.ToArray(typeof(string)));
         return true;
     }
     bool updateATT(ArrayList at)
@@ -75,23 +78,25 @@ public class Button : MonoBehaviour
                 ATT.Add(att);
             }
         }
+        ATT.Sort();
+        ATT.Remove(" ");
+        ATT.Remove(""); 
         atts.text = string.Join(", ", (string[])ATT.ToArray(typeof(string)));
+        //atts.text = string.Join(", ", (string[])ATT.ToArray(typeof(string)));
         return true;
     }
     public void showUi(GameObject chooseUI){
         if(flag){
-            R.Add("A");
-            R.Add("B");
-            R.Add("C");
-            R.Add("D");
-            R.Add("E");
+            R = new ArrayList(rs.text.Split(", "));
             flag = false;
         }
+        
         chooseUI.SetActive(true);
         ATT = new ArrayList(atts.text.Split(", "));
         //print(ATT.Count);
         ArrayList sh = new ArrayList();
         foreach(string at in R){
+            print(at);
             if(!ATT.Contains(at)){
                 sh.Add(at);
             }
@@ -120,7 +125,7 @@ public class Button : MonoBehaviour
         {
             CKChoice_5.SetActive(true);
         }
-        if (sh.Count == 6)
+        if (sh.Count >= 6)
         {
             CKChoice_6.SetActive(true);
         }

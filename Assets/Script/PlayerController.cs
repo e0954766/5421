@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI atts;
     public TextMeshProUGUI cks;
     public TextMeshProUGUI fds;
+    public TextMeshProUGUI rs;
+
 
     public GameObject winUI;
     public GameObject loseUI;
@@ -52,6 +54,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI boxText;
 
     public TreasureController treasure;
+    //public Button button;
     public bool canOpen;
 
 
@@ -63,7 +66,13 @@ public class PlayerController : MonoBehaviour
     // add new function
     ArrayList splitAttr(string side)
     {
-        ArrayList res = new ArrayList(side.Split(','));
+        ArrayList res = new ArrayList();
+        for (int i = 0; i < side.Length; i++)  //遍历字符串s中的每一个字符（从前向后）  
+        {  
+            char c = side[i];  
+            res.Add(c.ToString());
+            //print(c);
+        } 
         return res;
     }
     // get the fd from boxText, then use openBox function to detect if player can open the box
@@ -98,6 +107,7 @@ public class PlayerController : MonoBehaviour
     // add attributes list [] into CK
     bool changeCK(ArrayList atts)
     {
+        CK.Remove(" ");
         foreach (string att in atts)
         {
             if (!CK.Contains(att))
@@ -117,6 +127,9 @@ public class PlayerController : MonoBehaviour
                 ATT.Add(att);
             }
         }
+        ATT.Sort();
+        ATT.Remove(" ");
+        ATT.Remove("");   
         atts.text = string.Join(", ", (string[])ATT.ToArray(typeof(string)));
         return true;
     }
@@ -136,7 +149,7 @@ public class PlayerController : MonoBehaviour
     bool checkRCK()
     {
         CK.Sort();
-        string key = string.Join(",", (string[])CK.ToArray(typeof(string)));
+        string key = string.Join("", (string[])CK.ToArray(typeof(string)));
         return RCK.Contains(key);
     }
 
@@ -217,13 +230,16 @@ public class PlayerController : MonoBehaviour
         foreach (var attr in rArray)
         {
             R.Add(attr.ToString());
+            //print(attr);
         }
 
         var fdArray = (JArray)data["FD"];
         foreach (var fd in fdArray)
         {
             var lhsArray = (JArray)fd[0];
+            //var test = lhsArray.Select(x => x.ToString());
             var lhs = string.Join("", lhsArray.Select(x => x.ToString()));
+            //print(lhsArray);
             var rhsArray = (JArray)fd[1];
             var rhs = string.Join("", rhsArray.Select(x => x.ToString()));
             FD.Add(lhs);
@@ -238,12 +254,17 @@ public class PlayerController : MonoBehaviour
             RCK.Add(key);
         }
 
-        atts.text = string.Join(", ", (string[])ATT.ToArray(typeof(string)));
-        cks.text = string.Join(", ", (string[])CK.ToArray(typeof(string)));
+        //print('?');
+        //button.printR();
+        atts.text = "";
+        cks.text = "";
+        rs.text = string.Join(", ", (string[])R.ToArray(typeof(string)));
+        //atts.text = string.Join(", ", (string[])ATT.ToArray(typeof(string)));
+        //cks.text = string.Join(", ", (string[])CK.ToArray(typeof(string)));
         string strf = "";
         for (int i = 0; i < FD.Count; i++)
         {
-            strf += FD[i] + " -> " + FD[i + 1] + " ; ";
+            strf += FD[i] + " -> " + FD[i + 1] + " , ";
             i++;
         }
         fds.text = strf;
