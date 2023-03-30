@@ -1,0 +1,81 @@
+{
+  "easy": {
+    "attributes": {
+      "generation_method": "fixed",
+      "value": 4
+    },
+    "fds": {
+      "generation_method": "fixed",
+      "value": 3
+    },
+    "lhs_size": {
+      "generation_method": "random_range",
+      "min": 1,
+      "max": 2
+    },
+    "rhs_size": {
+      "generation_method": "poisson",
+      "lambda": 2
+    },
+    "fixed_count_lhs_rhs": {
+      "fixed_lhs_count": 0,
+      "fixed_lhs_size": 0,
+      "fixed_rhs_count": 0,
+      "fixed_rhs_size": 0
+    }
+  },
+   "middle": {
+    "attributes": {
+      "generation_method": "random_range",
+      "min": 5,
+      "max": 6
+    },
+    "fds": {
+      "generation_method": "random_range",
+      "min": 4,
+      "max": 6
+    },
+    "lhs_size": {
+      "generation_method": "random_range",
+      "min": 1,
+      "max": 3
+    },
+    "rhs_size": {
+      "generation_method": "poisson",
+      "lambda": 3
+    },
+    "fixed_count_lhs_rhs": {
+      "fixed_lhs_count": 1,
+      "fixed_lhs_size": 1,
+      "fixed_rhs_count": 1,
+      "fixed_rhs_size": 1
+    }
+  },
+  "hard": {
+    "attributes": {
+      "generation_method": "random_range",
+      "min": 6,
+      "max": 8
+    },
+    "fds": {
+      "generation_method": "random_range",
+      "min": 6,
+      "max": 8
+    },
+    "lhs_size": {
+      "generation_method": "random_range",
+      "min": 1,
+      "max": 4
+    },
+    "rhs_size": {
+      "generation_method": "poisson",
+      "lambda": 3
+    },
+    "fixed_count_lhs_rhs": {
+      "fixed_lhs_count": 2,
+      "fixed_lhs_size": 1,
+      "fixed_rhs_count": 0,
+      "fixed_rhs_size": 0
+    }
+  }
+}
