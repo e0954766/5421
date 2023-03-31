@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Button : MonoBehaviour
 {
@@ -162,5 +163,26 @@ public class Button : MonoBehaviour
     public void closeRule()
     {
         ruleWindow.SetActive(false);
+    }
+
+    public void MainToMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+    public void MenuToEasy()
+    {
+        SceneManager.LoadScene("level1");
+    }
+    public void MenuToMid()
+    {
+        SceneManager.LoadScene("level2");
+    }
+    public void MenuToHard()
+    {
+        SceneManager.LoadScene("level3");
+    }
+    public void ToMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }

@@ -415,8 +415,14 @@ public class PlayerController : MonoBehaviour
         if(other.tag == "Finish"){
             if(checkDoor() && checkRCK()){
                 winUI.SetActive(true);
-                //Invoke("ReStartThisScene", 3.0f); //换成下一关
-                Invoke("GoNextLevel", 2.0f);
+                if (level == 2)
+                {
+                    Invoke("ReStartThisScene", 2.0f);
+                }
+                else
+                {
+                    Invoke("GoNextLevel", 2.0f); //换成下一关
+                }
             } else if(checkDoor()==false){
                 //hint
                 hintUI.SetActive(true);
