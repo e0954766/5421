@@ -7,6 +7,7 @@ using TMPro;
 public class Button : MonoBehaviour
 {
     public GameObject treasureWindow; // 弹窗对象
+    public GameObject ruleWindow; // 弹窗对象
     public TextMeshProUGUI atts;
     public TextMeshProUGUI cks;
     public TextMeshProUGUI rs;
@@ -153,5 +154,13 @@ public class Button : MonoBehaviour
         }
         //button.interactable = false;
 
+    }
+    public void openRule()
+    {
+        ruleWindow.SetActive(true);
+    }
+    public void closeRule()
+    {
+        ruleWindow.SetActive(false);
     }
 }

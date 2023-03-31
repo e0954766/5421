@@ -1513,7 +1513,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.0472536, y: 0.22400022, z: -10}
+  m_LocalPosition: {x: -3.7211301, y: 0.22487664, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2242,7 +2242,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762697562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.0472536, y: 0.22400022, z: -10}
+  m_LocalPosition: {x: -3.9399192, y: 0.22400022, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5871,6 +5871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   treasureWindow: {fileID: 1871520886}
+  ruleWindow: {fileID: 0}
   atts: {fileID: 1311155419}
   cks: {fileID: 776728328}
   rs: {fileID: 1400006612}
@@ -6210,6 +6211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   treasureWindow: {fileID: 1871520886}
+  ruleWindow: {fileID: 0}
   atts: {fileID: 0}
   cks: {fileID: 0}
   rs: {fileID: 0}
@@ -9695,6 +9697,10 @@ PrefabInstance:
       propertyPath: boxUI
       value: 
       objectReference: {fileID: 1088855111}
+    - target: {fileID: 8916479388682296371, guid: b6387723191a2e948acc9bd1cc0884c1, type: 3}
+      propertyPath: level
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8916479388682296371, guid: b6387723191a2e948acc9bd1cc0884c1, type: 3}
       propertyPath: winUI
       value: 

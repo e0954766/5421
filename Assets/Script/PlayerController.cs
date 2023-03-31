@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public bool isJump;
 
     bool jumpPressed;
+    public int level;
     int jumpCount;
 
     public GameObject retryHint;
@@ -222,6 +223,18 @@ public class PlayerController : MonoBehaviour
         FD = new string[]{"A","B","B","C","C","D,E"};
         CK = new string[]{"A"};
         ATT = new string[]{"A"};*/
+        if (level == 0)
+        {
+            difficulty = "easy";
+        }
+        else if (level == 1)
+        {
+            difficulty = "middle";
+        }
+        else
+        {
+            difficulty ="hard";
+        }
         GameConfig config = new GameConfig(difficulty);
         Generator generator = new Generator(config);
         JObject data = generator.Generate();
@@ -387,6 +400,10 @@ public class PlayerController : MonoBehaviour
         retryHint.SetActive(false); 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    void GoNextLevel()
+    {
+        //SceneManager.LoadScene("level2");
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Box")
@@ -397,14 +414,15 @@ public class PlayerController : MonoBehaviour
         }
         if(other.tag == "Finish"){
             if(checkDoor() && checkRCK()){
-                winUI.SetActive(true); 
-                Invoke("ReStartThisScene", 3.0f); //换成下一关
+                winUI.SetActive(true);
+                //Invoke("ReStartThisScene", 3.0f); //换成下一关
+                Invoke("GoNextLevel", 2.0f);
             } else if(checkDoor()==false){
                 //hint
                 hintUI.SetActive(true);
             }else if(checkRCK()==false){
                 loseUI.SetActive(true); 
-                Invoke("ReStartThisScene", 3.0f);
+                Invoke("ReStartThisScene", 2.0f);
             }
         }
     }
