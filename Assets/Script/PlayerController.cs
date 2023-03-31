@@ -402,7 +402,7 @@ public class PlayerController : MonoBehaviour
     }
     void GoNextLevel()
     {
-        //SceneManager.LoadScene("level2");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
     void OnTriggerEnter2D(Collider2D other)
     {
